@@ -5,7 +5,7 @@ from scipy.stats import kstest
 import matplotlib.pyplot as plt
 from moonpy import *
 
-targets = ['HD 39060']
+targets = [input('Which Star?')]
 telescopes = ['TESS', 'Kepler', 'K2']
 
 
@@ -26,8 +26,12 @@ for target in targets:
         ax.set_ylabel(r'flux (arb.)')
         ax.set_xlim(np.min(times[0]),np.max(times[0]))
 
+        start = int(input('Kernel Size Start:'))
+        end   = int(input('Kernel Size End:'))
+        step  = int(input('Kernel Size Step:'))
+        variable_input = input('Plots? y/n:')
         for i in range(0,len(fluxes)):
-            for kern in np.arange(5,50,10):
+            for kern in np.arange(start, end, step):
                 fig = plt.figure(figsize=(8,6), dpi=300)
                 ax = fig.add_subplot(1,1,1)
                 print(i,len(times[i]),len(fluxes[i]))
@@ -35,4 +39,8 @@ for target in targets:
                 ax.set_xlim(np.min(times[i]),np.max(times[i]))
                 ax.plot(times[i], med_fluxes, linestyle = '-', color = 'red')
                 ax.set_title(kern)
-                fig.savefig('/Users/charitywei/Desktop/test01/' + target + '_'+ telescope + 'kernel size' + str(kern) + '_' + str(i) + 'medfilt.png', dpi=300)
+                #fig.savefig('/Users/charitywei/Desktop/test01/' + target + '_'+ telescope + 'kernel size' + str(kern) + '_' + str(i) + 'medfilt.png', dpi=300)        
+                if variable_input == 'y':
+                    plt.show()
+                else:
+                    pass
