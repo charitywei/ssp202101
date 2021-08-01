@@ -25,7 +25,6 @@ for target in targets:
         ax.set_xlabel(r'time (BTJD)')
         ax.set_ylabel(r'flux (arb.)')
         ax.set_xlim(np.min(times[0]),np.max(times[0]))
-        plt.show()
 
         for i in range(0,len(fluxes)):
             for kern in np.arange(5,50,10):
